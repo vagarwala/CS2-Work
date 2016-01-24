@@ -18,7 +18,7 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     /* TODO: Put your declarations here.
-     * All variables are of type `int`. Only use one line! */
+     * Variable `a` is of type `int`. Only use one line! */
 
     /***** CHANGE NOTHING BELOW THIS LINE *****/
     a = 5;
