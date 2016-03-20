@@ -1,6 +1,6 @@
 CC = g++
 LD = g++
-CPPFLAGS = -std=c++0x -g -Wall -pedantic
+CPPFLAGS = -std=c++11 -g -Wall -pedantic
 LDFLAGS =
 
 # Add any extra .cpp files to this line to
