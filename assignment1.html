@@ -398,13 +398,13 @@ Reading symbols from /path/to/debugging2...done.
 <p>At this point we can just run the program by entering <span class="code">run</span>, but that would tell us little on its own. We should be a little more methodical. We can set a <span class="keyword">breakpoint</span>, which tells GDB to stop when it reaches the corresponding line of code:</p>
 
 <pre class="code">
-(gdb) <b>break debugging2.cpp:76</b>
-Breakpoint 1 at 0x400898: file debugging2.cpp, line 76.
+(gdb) <b>break debugging2.cpp:77</b>
+Breakpoint 1 at 0x400898: file debugging2.cpp, line 77.
 (gdb) <b>run</b>
 Starting program: /path/to/debugging2
 
-Breakpoint 1, main (argc=1, argv=0x7fffffffe238) at debugging2.cpp:76
-76	    cout << divide(15625, 37) << endl;  // should print 422
+Breakpoint 1, main (argc=1, argv=0x7fffffffe238) at debugging2.cpp:77
+77	    cout << divide(15625, 37) << endl;
 (gdb)
 </pre>
 
@@ -420,8 +420,8 @@ Breakpoint 1, main (argc=1, argv=0x7fffffffe238) at debugging2.cpp:76
 
 <pre class="code">
 (gdb) <b>step</b>
-divide (a=15625, b=37) at debugging2.cpp:31
-31	    unsigned int x = 0, y = 0, z = sizeof(a) * 8;
+divide (a=15625, b=37) at debugging2.cpp:33
+33	    unsigned int x = 0, y = 0, z = sizeof(a) * 8;
 (gdb)
 </pre>
 
@@ -429,9 +429,9 @@ divide (a=15625, b=37) at debugging2.cpp:31
 
 <pre class="code">
 (gdb) <b>backtrace</b>
-#0  divide (a=15625, b=37) at debugging2.cpp:31
+#0  divide (a=15625, b=37) at debugging2.cpp:33
 #1  0x0000000000400566 in main (argc=1, argv=0x7fffffffe238)
-    at debugging2.cpp:74
+    at debugging2.cpp:77
 (gdb) <b>print x</b>
 $2 = 0
 (gdb) <b>print y</b>
@@ -454,7 +454,7 @@ $6 = 422
 
 <pre class="code">
 (gdb) <b>step</b>
-33	    while(z != 0)
+35	    while(z != 0)
 (gdb) <b>print x</b>
 $7 = 0
 (gdb) <b>print y</b>
