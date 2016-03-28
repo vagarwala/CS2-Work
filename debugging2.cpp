@@ -73,6 +73,7 @@ unsigned int divide(unsigned int a, unsigned int b)
  */
 int main(int argc, char ** argv)
 {
-    cout << divide(15625, 37) << endl;  // should print 422
+    // This should print 422. Be sure to try some more test cases though!
+    cout << divide(15625, 37) << endl;
     return 0;
 }
