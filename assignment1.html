@@ -141,9 +141,9 @@
 <body>
 <div class="content">
 
-<div class="author">Authors: Ben Yuan <br/> and Ellen Price</div>
+<div class="author">Authors: Ben Yuan <br/> and Ellen Price <br/> Revised 2018: Maitreyi Ashok <br/>and Zachary Domanico</div>
 <h1>CS2 Assignment 1: Introduction to C++</h1>
-<h2>Due Wednesday, January 11, 2017, at 17:00 PST</h2>
+<h2>Due Wednesday, January 10, 2018, at 17:00 PST</h2>
 
 <hr />
 
@@ -842,39 +842,64 @@ Vector2 * n = new Vector2(8, 6); // vector [8, 6]
 
 <p>C++ allows classes to derive from base classes, inheriting their public and protected members, through the <span class="keyword">inheritance</span> mechanism; pointers to derived classes can be transparently cast to pointers to base classes. Additionally, C++ allows member functions to be marked as <span class="keyword">virtual</span> functions, allowing their behavior to be overriden by derived classes; through the <span class="keyword">polymorphism</span> mechanism, pointers to base classes, when used to call virtual functions, will transparently call the correct version of the function depending on what class of object is actually being pointed to.</p>
 
-<h4>Exercise: Tic-Tac-Toe</h4>
+<h4>Exercise: Sudoku</h4>
 
-<p>In this exercise, you'll be programming a simple game from scratch; namely, a game of tic-tac-toe. The catch is, you'll be doing it in an object-oriented fashion.</p>
+<pre class="prettyprint code">
+-------------------------
+| 2   8 |     3 | 5     | 
+|   1   |   7   | 4     | 
+| 7 4 9 |     5 | 1     | 
+-------------------------
+|     3 |   5   | 6   4 | 
+| 4     | 8   9 |     1 | 
+| 9   1 |   4   | 2     | 
+-------------------------
+|     2 | 5     | 8 6 7 | 
+|     4 |   9   |   1   | 
+|     7 | 1     | 9   5 | 
+-------------------------
+</pre>
 
-<p>For this exercise, you'll be working in the <span class="code">tictactoe</span> directory. You'll notice we've put some empty files there for you, as well as a Makefile. You'll populate, at least, these empty files, and possibly more depending on how you decide to do your architecture.</p>
+<p>Similar to your last assignment in CS1, in this exercise, you'll be programming a simple game from scratch; namely, a game of Sudoku. One big difference is that you'll be programming this version in C++ instead of python. Hopefully you'll be able to recall some of the strategies you used on that assignment, but please do not directly refer from your code from CS1 while working on this assignment. You'll also be implementing this version differently because you'll be doing it in an object-oriented fashion.</p>
+
+
+
+<p>For this exercise, you'll be working in the <span class="code">sudoku</span> directory. You'll notice we've put some empty files there for you, as well as a Makefile. You'll populate, at least, these empty files, and possibly more depending on how you decide to do your architecture.</p>
 
 <p>A minimal, <span class="emph">incomplete</span> architecture outline for this exercise might look like this:</p>
 
 <ul>
-    <li>a Board class, representing the game board</li>
+    <li>a Board/Grid class, representing the game board</li>
     <ul>
         <li>member variables</li>
         <ul>
-            <li><span class="code">squares</span> - stores occupancy data for this board</li>
+            <li><span class="code">grid</span> - stores occupancy data for this board</li>
         </ul>
         <li>member functions</li>
         <ul>
-            <li><span class="code">Query()</span> - given board coordinates, return a square state (unoccupied, X, O)</li>
-            <li><span class="code">Place()</span> - given board coordinates and a piece type, places a game piece onto the board</li>
-            <li><span class="code">CheckWin()</span> - returns which player won, if any</li>
-            <li><span class="code">CheckDraw()</span> - returns whether the game has ended in a draw</li>
+            <li><span class="code">loadBoard(string filename)</span> - takes in a filename and populates the grid. </li>
+            <li><span class="code">isComplete()</span> - checks to see if the board is full</li>
+            <li><span class="code">checkValid(int x, int y, char val)</span> - 
+            given a move check if it if it violates the the 3x3, row, and/or column constraint.
+            </li>
+            <li><span class="code">writeNum(int x, int y, char val)</span> - given a move, apply it to the board if it doesn't violate any constraints</li>
+            <li><span class="code">undoNum(int x, int y)</span> - undoes the move in the given position. You can only undo user entered moves. </li>
         </ul>
     </ul>
     <li>a Game class, holding the game state</li>
     <ul>
         <li>member variables</li>
         <ul>
-            <li><span class="code">board</span> - the game board instance for this game</li>
-            <li><span class="code">turn</span> - whose turn is it to play</li>
+            <li><span class="code">moves</span> - store the number of moves (not required for this assignment, just an example)</li>
         </ul>
         <li>member functions</li>
         <ul>
-            <li><span class="code">Run()</span> - sets up and plays a single session of Tic-Tac-Toe</li>
+            <li><span class="code">getMove()</span> - gets a move from user input. 
+            d for move followed by row, column and digit (ex. <span class="code">d  1 1 2 </span>), 
+            u for undo (ex. <span class="code"> u 1 1 </span>)
+            q for quit
+            </li>
+            <li><span class="code">Run()</span> - sets up and plays a single session of Sudoku (loads file and play)</li>
         </ul>
     </ul>
 </ul>
@@ -892,12 +917,15 @@ cin >> i;
 
 <p><div class="points easy">3</div>Your implementation should satisfy the following specifications:</p>
 
-<ul><li>This is a two-player game played on a 3x3 board.</li>
-<li>Input and output should be handled from the command prompt. For this assignment, you may assume all input is valid, though this is generally a dangerous assumption to make.</li>
-<li>Two humans should be able to play interactively, in a "hot seat" mode. That is, both players use the same computer, while taking turns.</li>
-<li>The X player should always go first.</li>
-<li>Play should alternate between players, with each player placing one symbol in an empty square per turn.</li>
-<li>The first player to place three symbols in a row wins.</li></ul>
+<ul><li>This is a one-player game played on a 9x9 board with nine 3x3 sectors. Please have the board look like the one included above. </li>
+<li>The original Sudoku board is loaded from a file. Look at the provided test Sudoku puzzle file in the directory for the expected format. </li>
+<li>Input and output should be handled from the command prompt.</li>
+<li>Moves: use the format d row col digit (ex. <span class="code">d 1 1 2</span> would move 2 to the top left slot), require row and column entries be from 1-9</li>
+<li>Undoing Moves: u row col (ex. <span class="code">u 9 9 </span>) removes the bottom right element - only allow undoing user entered moves </li>
+<li>Quitting: Allow the user to exit at any time by enter q </li>
+<li> Disallow moves that violates the soduku constraints, has invalid row/col input, has a value that is not 0-9. When this occurs prompt the user with an error message that contains the word " ERROR " (This is for the test suite) </li>
+<li>Notify the user when they have successfully solved the puzzle. Please contain the word "SOLVED" in your message. </li>
+<li> Your implementation of the code should pass the tests provided. Run make check to compile your code and run the it with a couple different situations. Feel free to examine the python file which has comments describing what each test checks for. Keep in mind the tests might not catch every bug. Feel free to add additional tests or actual unit tests. </li>
 
 <p>To achieve full credit, your source code must be completely documented. That is:</p>
 
@@ -905,25 +933,21 @@ cin >> i;
 <li>Every class should receive a class header. At an absolute minimum, each class header should contain a brief English description of the class in question: what it is, and what its purpose is.</li>
 <li>Any non-trivial code should be annotated with descriptions of what is happening. These should complement and explain the code, <span class="emph">not</span> merely mirror it. Observe that your definition of 'non-trivial' may not be equivalent to ours!</li></ul>
 
-<p>Leave your code in the <span class="code">tictactoe</span> directory and include it with your archive submission.</p>
+<p>Leave your code in the <span class="code">sudoku</span> directory and include it with your archive submission.</p>
 
-<h4>Exercise: Meta-Tic-Tac-Toe</h4>
+<h4>Exercise: Solving Sudoku</h4>
 
 <div class="attention">This part is more time-consuming. Complete it only if you have time.</div>
 
-<p>Meta-tic-tac-toe is a variation on tic-tac-toe played on a 3x3 grid of tic-tac-toe boards. The rules are as follows:</p>
+<p>Sudoku puzzles can be time consuming, but the computer can solve them very quickly! For this section please implement a sudoku solver that can solve some harder sudoku puzzles in a reasonable time. Your code should read in a sudoku board just like the first section, solve it, and print out the solved board. </p>
 
-<ul><li>This is a two-player game.</li>
-<li>The X player always receives priority first.</li>
-<li>Every turn, the player with priority places one symbol on an open square on the active board. The active board is then switched to the board corresponding to the square on which the symbol has placed.</li>
-<ul><li>In other words, if the O player places an O on the top-right square of some board, then the top-right board becomes active.</li></ul>
-<li>Priority is passed to the other player after the player with priority has moved and the active board has switched.</li>
-<li>If the active board has no legal moves, or no moves have yet been made, the player with priority may play on any board.</li>
-<li>If a player achieves three in a row on an individual board, the board itself becomes marked with that player's symbol. Moves may still be made on a board that has been thusly marked, but additional three-in-a-rows by either player will have no effect.</li>
-<li>If three boards in a row have been marked with a single player's symbol, that player wins the game.</li>
-<li>If no legal moves remain, the winner is the player that has successfully marked more boards. If neither player has marked more boards than the other in this situation, then the game is a draw.</li></ul>
+<ul>
+<li>Feel free to solve this using any programming method you desire.</li>
+<li>Please highlight and explain any new data structures you used for this section. </li>
+<li>Please describe in your code your approach for solving the sudoku puzzle, why you chose it, and give a brief runtime analysis of it (I know we haven't gone over runtime analysis in class by this point, you can either ask a TA or friend about Big O notation, or simple describe how well your algorithm would work if instead of 9x9 we made the board 100x100).</li>
+</ul>
 
-<p><div class="points hard">5</div>Implement this game in a new directory <span class="code">metatictactoe</span>. Include this directory with your archive submission. If you did a good job with the tic-tac-toe exercise, you should be able to reuse some code.</p>
+<p><div class="points hard">5</div>Implement this game in a new directory <span class="code">solvingsudoku</span>. Include this directory with your archive submission. If you did a good job with the sudoku exercise, you should be able to reuse a lot of code.</p>
 
 <div class="hint">If you have any questions about this week's assignment,
 please contact cs2-c-tas@cms.caltech.edu, or show up at any TA's office
