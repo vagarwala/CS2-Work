@@ -1,0 +1,13 @@
+freq.py contains the function freq(s) which takes in a string and returns an array of the frequencies of each letter in the string.
+
+to run the program:
+>>> python freq.py
+then type the string to be entered into the function.  inside freq.py it asks for the string using raw_input().
+
+the output is an array of length 26, where each element is the number of occurrences of the corresponding letter.
+
+space complexity:
+the only space used is the string of the alphabet, the 26-element array, and a few temporary variables.
+
+time complexity:
+time is probably O(n) because for each letter of the alphabet, I run str.count(sub), which runs through the whole string to find all occurrences of that letter.  This occurs 26 times so the time is approximately 26n, which is O(n).
