@@ -1,0 +1,9 @@
+This algorithm is implemented with recursion.
+There is a base case, and then three different parts of the recursion.
+Base case: if the strings are empty, we're done.
+Case 1: String 1: character 1, String 2: character 1
+Case 2: String 1: gap, String 2: character 1
+Case 3: String 1: character 1, String 2: gap
+This effectively shortens the strings by 1 character, so then we count the score from the first pair of characters and call align() again on the slightly shorter strings, and keep going until the strings are empty.
+In every recursive call, the maximum score is calculated, and then at the end this returns the total maximum score.
+We also use memoization because with this many recursive calls, there are bound to be a few times that the same case is repeated, so we can save a lot of effort by saving which function calls we've made so we don't spend extra time recalculating the same cases over and over.

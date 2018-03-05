@@ -1,0 +1,10 @@
+1. Dynamic programming is used to compute the seams; instead of recalculating the minimum energy for every row every time, we store all of the costs in a new array so that we can use the previous calculations for every row much more quickly.
+2. To implement this recursively, one could bute force it and try to check every possible seam.  The base case would be reaching the bottom of the image.  The recursive step would go from a pixel to all three possible pixels below it.
+3. The recursive step, each time, generates 3 more cases - therefore, 3^N.  [except the edges; they only generate 2 more cases.  But still, it's on the order of 3^N.]  Also, this has to happen for each of the pixels in the top row, so the total complexity is O(N3^N).
+4. For a 50 x 50 image, this is 50*3^50 computations, or 3.59 * 10^25 computations.  Assuming 1 billion computations per second, this would take 3.59 * 10^16 seconds.
+5. For the dynamic programming approach:
+for every row
+	for every pixel
+		we make three comparisons
+so it's O(3N^2).
+6. On a 50 x 50 image, this is 3 * 50^2 = 7500 computations, which, at 1 billion computations per second, would take 7.5 * 10^-6 seconds.

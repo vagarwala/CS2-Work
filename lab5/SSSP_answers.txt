@@ -1,0 +1,5 @@
+Questions about Dijkstra's algorithm: (1)
+
+It makes sense to first investigate the "closest" neighbor, or the neighbor reached by the lowest-cost edge.
+
+At each next step, it makes sense to investigate the node reachable from any of the already marked nodes that is the cheapest to get to. Also, at each step, we should be marking each node's "previous node;" that is, the node from which we reached it. This ends up yielding a shortest path to another node because using the pointers to the previous node, it is possible to reconstruct the shortest path all the way back to the original node.

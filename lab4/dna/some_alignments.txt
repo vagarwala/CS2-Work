@@ -1,0 +1,36 @@
+The first pair of sequences I aligned was two sequences of human influenza virus.  One was from the US in about 1920 and one was from the US but in about 1965, so this shows us how much the flu virus evolved in that time, which is pretty interesting. 
+
+string s: gaagtccttgtgctatggggtgttcatcatccgcctaccggtactgatcaacagagtctctatcagaatgcagatgcttatgtctctgtagggtcatcaaaatataacaggagattcaccccggaaatagcagcgagacccaaagtaagagatcaagctgggaggatgaactattactggacattacta
+
+string t: gtaccagactatgcatcgstcaggtytctagttgcctcctcaggaaccctagagtttttygcagaaggattcacatgggcaggagtcactcaaaatggagaaagcaatgcctgcatgagagggcctgctggtggttttttcagcaggstgaattggctgactaaatttggaggtgctta
+
+Aligned:
+
+string s: g aagtccttgtgctatggggtgttcatcatccgcctaccggtactgatcaacagagtctctatcagaatgcagatgcttatgtctctgtagggtcatcaaaatataacaggagattcaccccggaaatagcagcgagacccaaagtaagagatcaagctg ggaggatgaactattactggacattacta
+
+string t: gtaccagactatgcatcgstcaggtytctagttgcct cc  tcaggaaccctagagtttttygcagaa g  gattcacatg ggcaggagtcac tcaaaatggagaaagcaatgc ctgc atgagag ggcctgctggtggttttttcagcaggstgaattggctg actaaatttggaggtgctta
+
+Instructions: |t|******|*|||***|****|*|****|***||||s||ss|***||*|***|||||*|*|**|||||s|ss|||*|**|||s**|*|*||***|s|||||||**|**|*|**||*|s|**|s***|*||s*||**|********|*****|*||*|*||t***||*||s||||****||||**|***||
+
+
+Score was 17; this means that while significant portions were the same, a lot also changed in that much time.
+
+
+
+The second pair of sequences I aligned was also two sequences of human influenza virus; both from 2009 (like one month apart), but one was from India and one was from Argentina; this shows us how much the flu virus differs by location even at the same time.
+
+string s: tcagtcgaaatgaatgcccctaattatcactatgaggaatgctcctgttatcctgattctagtgaaatcacatgtgtgtgcagggataactggcatggctcgaatcgaccgtgggtgtctttcaaccagaatctggaatatcagataggatacatatg
+
+string t: agcaactgttacccttatgatgtgccggattatgcctcccttaggtcactagttgcctcatccggcacactggagtttaacaatgaaagcttcaattggactggagtcactcaaaacggaacaagctctgcttgcataaggagatctaataatagtttctttagtagattgaattggttgacccacttaaa
+
+Aligned:
+
+string s:  tc a  g t  cgaaatga atgcc cctaat tatcac ta  tgagga atg ctc  ctgttatcct ga  tt ctagtgaaatc ac atgtgtgtgcaggga t  aactggca tggctcgaatcgaccgtgggtgtct ttcaaccagaatctggaatatcagataggat a  ca  tatg
+
+string t: agcaactgttacccttatgatgtgccggattatgcctcccttaggtcactagttgcctcatccggcacactggagtttaacaatgaaagcttcaattggactggagtcactcaaaacggaacaagctctgcttgcataaggagatctaataatagtttctttagtagattgaattggttgacccacttaaa
+
+Instructions: t*|t|tt|t|tt|***||||t*||||t**|*||t**||*|t||tt|*|**|t*||t|||tt|*|**|**||t||tt||t**|*|||||*|t*|t||**|**||*||**|t|tt||**||*|t**||||***|*|*****||***|||t*|*|*******|*|*|*|*||***||*||*|t|tt||tt||**
+
+Score: -56
+
+These two sequences were very different; the flu virus isn't even really comparable between India and Argentina.
