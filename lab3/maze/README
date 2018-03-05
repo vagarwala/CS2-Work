@@ -1,0 +1,9 @@
+BFS will probably be faster than DFS when the maze is smaller, because the end is not very many "layers deep" from the start.  It's easy for BFS to search all possible paths simultaneously.
+Also, BFS finds the shortest route, which is usually better.
+(We can see this in practice on the maze) If there are many different options, then BFS might be faster, since the DFS may explore multiple incorrect paths before finding the right one, and since it is DFS, it will explore those incorrect paths as much as it can before returning to the correct one.  We see this when we run DFS; it often takes paths which we see lead to dead-ends, but it often explores all of them before backtracking.
+
+If the maze is really big, the BFS may take much more memory than the DFS since it stores so many possible paths at once, whereas the DFS explores one at a time and removes the paths it's already seen from its stored memory.  Therefore, sometimes for bigger mazes, DFS may be more memory-efficient.
+
+A stack can be used in text/document editors and things like that; they would keep track of all of your changes in a stack.  That way, when you want to undo a change, it is simply popped off of the stack.
+
+A queue is used all the time whenever people have to "line up" for anything.  If people are at a ticket window or something, the first person in line will be the first to get their ticket; people will be added onto the end of the queue and "removed" (served) from the front of the queue.
