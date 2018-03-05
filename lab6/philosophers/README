@@ -1,0 +1,14 @@
+why does the greedy solution deadlock? (1)
+
+The greedy solution works as follows: Each philosopher picks up the fork on his left and the fork on his right. He then eats, then releases both forks, then repeats the process.
+This solution will always deadlock because when each philosopher greedily picks up the fork on the left, all the forks are taken, so they will all be waiting forever to pick up the fork on the right. This is because each philosopher only releases a fork after he has picked up both and eaten. But this scenario can never happen if each philosopher has a left fork. Therefore, deadlock happens.
+
+
+"waiter" - what is the maximum number of philosophers that can sit at any time? (1)
+
+The max number of philosophers that can sit at the table at any one time is n - 1 (in this case, 4). This is because we only need to make it such that the philosophers cannot deadlock, each with one fork.  We only need there to be more forks than philosophers, so if there are n - 1 philosophers at a table, then there will always be at least one philosopher that can eat (because he will have two free forks), so it will not deadlock.
+
+
+what happens when we begin the Chandy-Misra solution when all philosophers begin with dirty left forks? (1)
+
+If this solution began from a state where all philosophers have dirty left forks, deadlock would happen. This is because each philosopher would request the right fork from his neighbor. The neighbor would give the right fork after cleaning it, because all the forks are originally dirty.  But this is that philosopher's left fork. So then each philosopher would just have a clean fork in his right hand because he has given up the left fork, and nobody would be able to eat.

@@ -1,0 +1,4 @@
+
+why is a producer-consumer queue better?
+
+When we assign an equal number of rays to each thread, we may not necessarily assign an approximately equal amount of computation to each thread.  If some rays are more computationally demanding than others, then one thread may get significantly less computation to do than the other, which would not speed the program up very much.  However, a producer-consumer queue with multiple consumers essentially splits the computation into equal parts, rather than the number of rays.  This certainly speeds up the process, regardless of how computationally intensive the rays are.

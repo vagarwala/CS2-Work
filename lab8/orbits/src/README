@@ -1,0 +1,5 @@
+Forward Euler didn't end up very accurate; the orbiting satellite ended up getting gradually farther and farther from the center mass, and the displayed energy was not roughly constant (it kept slowly increasing to 0).
+
+Backward Euler was also not very accurate; this time, the orbiting satellite ended up getting gradually closer and closer to the center mass, and the displayed energy kept decreasing (further from 0).
+
+Symplectic Euler was the most accurate; energy fluctuated but stayed roughly around the same value.  

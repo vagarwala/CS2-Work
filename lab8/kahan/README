@@ -1,0 +1,9 @@
+When we add two floating point numbers, one of two things can happen:
+(a) one number is much larger than the other, or
+(b) they have more or less the same magnitude
+
+Either way, the result will have a bigger exponent than one of the numbers.  Since we can only store so much in the bits that make up the exponent, when we are storing the new number, this may result in the loss of a few small bits of the new exponent because they are not in the correct range, and they're dropped.  Usually it doesn't matter because they're so small, but the problem arises when we add more numbers and the error adds up.
+
+Notes:
+(1) I tried to write pairwise summation, but it's giving me a memory error and quitting.  I think I ran out of space on the stack, but I gave my VM as much processing power as I could and it still runs out.  I'm not really sure what else to do about it, though, because I wrote the recursion in place to minimize space complexity; but function calls have to double each time.  Right now, it's in kahan.cpp but commented out.
+(2) Also, I switched the HUGE macro to LARGE because I wanted to use cmath and I think HUGE is already pre-defined in cmath.
